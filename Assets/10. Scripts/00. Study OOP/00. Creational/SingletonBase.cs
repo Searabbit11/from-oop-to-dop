@@ -3,6 +3,11 @@ using UnityEngine;
 
 namespace Study.OOP
 {
+    public class GameManager : SingletonBase<GameManager>
+    {
+        public int Level;
+    }
+
     public abstract class SingletonBase<T> : MonoBehaviour where T : MonoBehaviour
     {
         protected static T instance;
