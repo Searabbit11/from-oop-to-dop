@@ -20,16 +20,7 @@ namespace Study.OOP.Builder
 
         private void Awake()
         {
-            Sword newSwordA 
-                = new SwordBuilder().CreateSword();
-            Sword newSwordB 
-                = new SwordBuilder().SetRandomGrade().CreateSword();
-            Sword newSwordC 
-                = new SwordBuilder().SetRandomGrade().SetName().CreateSword();
-
-            Debug.Log(newSwordA.ToString());
-            Debug.Log(newSwordB.ToString());
-            Debug.Log(newSwordC.ToString());
+            BlackSmith blackSmith = new BlackSmith();
         }
     }
 
