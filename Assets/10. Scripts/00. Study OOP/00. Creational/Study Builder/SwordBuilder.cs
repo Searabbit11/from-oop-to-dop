@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Study.OOP.Builder
 {
@@ -121,6 +122,8 @@ namespace Study.OOP.Builder
         
         private Sword sword;
 
+        public int AttackValue => sword.AttackValue;
+
         public SwordBuilder()
         {
             sword = new Sword();
@@ -129,6 +132,11 @@ namespace Study.OOP.Builder
             sword.Type = ElementType.None;
             sword.Grade = Grade.Normal;
             sword.Options = new List<string>();
+        }
+
+        public Sword CreateSword()
+        {
+            return sword;
         }
         
         // Builder Pattern을 사용할때는 만들고자 하는 객체의 필드에
@@ -174,9 +182,35 @@ namespace Study.OOP.Builder
             return this;
         }
 
-        public Sword CreateSword()
+        public SwordBuilder SetRandomAttackValue()
         {
-            return sword;
+            sword.AttackValue = Random.Range(0, 10000);
+            return this;
+        }
+        
+        public SwordBuilder AddAttackValue()
+        {
+            sword.AttackValue += 500;
+            return this;
+        }
+        
+        public SwordBuilder SetRandomElementType()
+        {
+            sword.Type = (ElementType)Random.Range(0, 4);
+            return this;
+        }
+        
+        public SwordBuilder SetRandomRandomOption()
+        {
+            int randomIndex = Random.Range(0, weaponOptions.Length);
+            sword.Options.Add(weaponOptions[randomIndex]);
+            return this;
+        }
+
+        public SwordBuilder SetSword(Sword sword)
+        {
+            this.sword = sword;
+            return this;
         }
     }
 }
