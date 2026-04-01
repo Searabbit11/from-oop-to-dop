@@ -39,7 +39,31 @@ namespace Study.OOP.Study_Abstract_Factory
                 var factory = new SilverCardPackageFactory();
                 var package = factory.CreateCardPackage();
                 package.Open();
+                
+                var card = factory.CreateBonusCard();
+                Debug.Log($"BONUS !! : {card.Name}, {card.Value}");
             }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                ProducePackage(new SilverCardPackageFactory());
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                ProducePackage(new GoldCardPackageFactory());
+            }
+        }
+
+        //핵심 로직 :
+        //다른 Feature 클래스에 있겠죠?,
+        //어떤 조건(버튼 클릭이나 키입력)에의해 동작하는 함수가 될겁니다
+        private void ProducePackage(CardPackageFactory factory)
+        {
+            CardPackage package = factory.CreateCardPackage();
+            package.Open();
+                
+            Card card = factory.CreateBonusCard();
+            Debug.Log($"BONUS !! : {card.Name}, {card.Value}");
         }
     }
 }
