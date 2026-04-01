@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Study.OOP.Study_Factory;
 
 namespace Study.OOP.Study_Abstract_Factory
@@ -19,8 +20,26 @@ namespace Study.OOP.Study_Abstract_Factory
     // - 크로스 플랫폼 프로젝트에서 플랫폼별 인풋맵을 제작해야 할 때
     //      - New Input System에서 추상팩토리를 사용했음
     
+    
+    
     public class StudyAbstractFactory : MonoBehaviour
     {
-        
+        // 팩토리 패턴의 Card.Factory 계열의 클래스들을 이용해서
+        // 카드깡 시스템을 제작해봅시다
+
+        private void Awake()
+        {
+           
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                var factory = new SilverCardPackageFactory();
+                var package = factory.CreateCardPackage();
+                package.Open();
+            }
+        }
     }
 }
