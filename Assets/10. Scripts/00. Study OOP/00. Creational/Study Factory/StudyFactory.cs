@@ -21,20 +21,10 @@ namespace Study.OOP.Study_Factory
     {
         private List<Card.Factory> cardFactories = new List<Card.Factory>();
         
-        private List<Card.Factory> 실버카드패키지 = new List<Card.Factory>();
-        private List<Card.Factory> 골드카드패키지 = new List<Card.Factory>();
-        
-        
         private void Awake()
         {
             cardFactories.Add(new NormalCard.NormalCardFactory(30,100));
             cardFactories.Add(new EpicCard.EpiCardFactory(0,1));
-            
-            실버카드패키지.Add(new NormalCard.NormalCardFactory(30,100));
-            실버카드패키지.Add(new RareCard.RareCardFactory(0,30));
-            
-            골드카드패키지.Add(new UniqueCard.UniqueCardFactory(0,50));
-            골드카드패키지.Add(new EpicCard.EpiCardFactory(51,100));
         }
 
         private void Update()
@@ -51,16 +41,6 @@ namespace Study.OOP.Study_Factory
             {
                 cardFactories.Add(new RareCard.RareCardFactory(15,30));
                 cardFactories.Add(new UniqueCard.UniqueCardFactory(1,15));
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                CreateCard(실버카드패키지);
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                CreateCard(골드카드패키지);
             }
         }
 
