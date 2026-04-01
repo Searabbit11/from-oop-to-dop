@@ -26,4 +26,18 @@ namespace Study.OOP.Study_Abstract_Factory
             }
         }
     }
+
+    public class GoldCardPackage : CardPackage
+    {
+        public override void Open()
+        {
+            Debug.Log($"<color=yellow> Opening Gold Card Package!!  </color>");
+
+            for (int i = 0; i < Cards.Count; i++)
+            {
+                string hexColor = ColorUtility.ToHtmlStringRGBA(Cards[i].Color);
+                Debug.Log($"- <color=#{hexColor}>{Cards[i].Name}, {Cards[i].Value}</color>");
+            }
+        }
+    }
 }
