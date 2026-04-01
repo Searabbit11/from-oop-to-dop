@@ -3,7 +3,6 @@
 namespace Study.OOP._01._Structural.Study_Decorator
 {
     // BaseStat에 변화를 주는 장식 클래스들 입니다
-
     public abstract class StatDecorator : IStat
     {
         public virtual int Hp => decoratedStat.Hp;
