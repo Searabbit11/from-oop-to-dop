@@ -31,14 +31,64 @@ namespace Study.OOP._01._Structural.Study_Adpater
             return "LINE_TOKEN_XYZ";
         }
 
-        public void ExecutePayment(string token, string productId, string amount)
+        public void ExecutePayment(string token, string productId, int amount)
         {
             Debug.Log($"[LinePay API] : {productId} 상품 {amount} 결제 실행." +
                       $"{token}");
         }
     }
     #endregion
+
+    public interface IPaymentAdapter
+    {
+        void RequestPay(string userId, string itemId, int price);
+    }
+
+    public class KaKaoPayAdapter : IPaymentAdapter
+    {
+        public void RequestPay(string userId, string itemId, int price)
+        {
+            ExternalKakaoAPI kakaoAPI = new ExternalKakaoAPI();
+            kakaoAPI.Request(itemId, userId);
+        }
+    }
+
+    public class LinePayAdapter : IPaymentAdapter
+    {
+        public void RequestPay(string userId, string itemId, int price)
+        {
+            ExternalLineAPI lineAPI = new ExternalLineAPI();
+            string token = lineAPI.GetAuthToken(userId);
+            lineAPI.ExecutePayment(token, itemId, price);
+        }
+    }
     
     
+    public class Shop
+    {
+        public void Purchase(IPaymentAdapter adapter, string userId, string itemId, int price)
+        {
+            adapter.RequestPay(userId, itemId, price);
+        }
+        
+        public void PurchaseToKakao(string userId, string itemId)
+        {
+            // 구매를 진행한다~ 라고 가정을 하고 출발하겠습니다
+            // 카카오로 구매를 진행한다
+            
+            ExternalKakaoAPI kakaoAPI = new ExternalKakaoAPI();
+            kakaoAPI.Request(itemId, userId);
+        }
+        
+        public void PurchaseToLine(string userId, string itemId, int price)
+        {
+            // 구매를 진행한다~ 라고 가정을 하고 출발하겠습니다
+            // 카카오로 구매를 진행한다
+            
+            ExternalLineAPI lineAPI = new ExternalLineAPI();
+            string token = lineAPI.GetAuthToken(userId);
+            lineAPI.ExecutePayment(token, itemId, price);
+        }
+    }
     
 }

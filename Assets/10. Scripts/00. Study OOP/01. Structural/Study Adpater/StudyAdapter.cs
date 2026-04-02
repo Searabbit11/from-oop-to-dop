@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Study.OOP._01._Structural.Study_Adpater
 {
@@ -20,6 +21,33 @@ namespace Study.OOP._01._Structural.Study_Adpater
     
     public class StudyAdapter : MonoBehaviour
     {
+        private Shop shop = new Shop();
+        private IPaymentAdapter currentAdpater;
         
+        private void Start()
+        {
+           
+        }
+
+        private void Update()
+        {
+            // 카카오페이로 변경
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                currentAdpater = new KaKaoPayAdapter();
+            }
+            
+            // 라인페이로 변경
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                currentAdpater = new LinePayAdapter();
+            }
+            
+            // 결제를 진행하는 부분
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                shop.Purchase(currentAdpater, "Jay", "Weapon001", 100);
+            }
+        }
     }
 }
