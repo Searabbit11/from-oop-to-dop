@@ -13,7 +13,7 @@ namespace ECS_Preview
         {
             var ecbSingleton = 
                 SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
-
+            
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
             
             foreach (var (properties, entity) 
