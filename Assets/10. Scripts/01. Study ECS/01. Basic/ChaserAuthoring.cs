@@ -1,4 +1,6 @@
 ﻿using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Rendering;
 using UnityEngine;
 
 namespace ECS_Basic
@@ -32,6 +34,12 @@ namespace ECS_Basic
                 {
                     MoveSpeed = authoring.MoveSpeed,
                     RotationSpeed =  authoring.RotationSpeed
+                });
+                
+                AddComponent(entity, new URPMaterialPropertyBaseColor
+                {
+                    // 여기서 Value는 RGBA 컬러(1,1,1,1)를 의미합니다.
+                    Value = new float4(1,1,1,1) // 흰색을 의미합니다.
                 });
             }
         }

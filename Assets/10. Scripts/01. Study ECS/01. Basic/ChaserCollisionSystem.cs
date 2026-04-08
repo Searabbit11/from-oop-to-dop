@@ -42,6 +42,11 @@ namespace ECS_Basic
         }
     }
     
+    // Target과 충돌했을 때 Chaser의 Color를 변경해 봅시다
+    // 1. Target과 Chaser의 충돌을 검사하고 싶다면
+    // 2. TargetTag와 URPMaterialPropertyBaseColor 두가지의 컴포넌트 데이터
+    // 3. 해당 컴포넌트를 기반으로 만족하는 Entity를 찾아냅니다
+    // 4. void Execute(TriggerEvent triggerEvent)의 triggerEvent로 전달된 Entity들의 검사를 진행합니다.
     [BurstCompile]
     public struct CollisionColorJob : ITriggerEventsJob
     {
@@ -56,9 +61,9 @@ namespace ECS_Basic
             
             //이제부터는 양방향 검사를 해야합니다.
 
-            if (ChaserLookup.HasComponent(entityA) && TargetLookup.HasComponent(entityB))
+            if (TargetLookup.HasComponent(entityA) && ColorLookup.HasComponent(entityB))
             {
-                // 충돌판정 1
+               
             }
             else if (ChaserLookup.HasComponent(entityB) && TargetLookup.HasComponent(entityA))
             {
