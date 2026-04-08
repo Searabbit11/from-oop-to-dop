@@ -38,7 +38,7 @@ namespace ECS_Basic
                 
                 AddComponent(entity, new URPMaterialPropertyBaseColor
                 {
-                    // 여기서 Value는 RGBA 컬러(1,1,1,1)를 의미합니다.
+                    // 여기서 Value는 RGBA 컬러(1,1,1,1)를 의미합니다 
                     Value = new float4(1,1,1,1) // 흰색을 의미합니다.
                 });
             }
