@@ -46,11 +46,8 @@ namespace ECS_Basic
         }
     }
     
-    // Target과 충돌했을때 Chaser의 Color를 변경해 봅시다.
-    // 1. Target과 Chaser의 충돌을 검사하고 싶다면
-    // 2. TargetTag와 URPMaterialPropertyBaseColor 두가지의 컴포넌트 데이터
-    // 3. 해당 컴포넌트를 기반으로 만족하는 Entity를 찾아냅니다.
-    // 4. void Execute(TriggerEvent triggerEvent)의 triggerEvent로 전달된 Entity들의 검사를 진행합니다.
+    // 단계별 구현은 Step1 가서 보시오
+    // Step1 상태에서 컬러 보간을 이용해서 색을 빼는 기능을 추가해야 한다고 시나리오를 설정해보겠습니다
     [BurstCompile]
     public struct CollisionColorJob : ITriggerEventsJob
     {
@@ -81,6 +78,33 @@ namespace ECS_Basic
             {
                 ColorLookup[entityA] = 
                     new URPMaterialPropertyBaseColor { Value = new float4(1, 0, 0,1) };
+            }
+        }
+    }
+
+    public partial struct ColorInterpolationJob : IJobEntity
+    {
+        public float DeltaTime; // 생성자를 통해서 주입받을 것 
+
+        public void Execute(ref URPMaterialPropertyBaseColor color,  ref HitColorTransition transition)
+        {
+            if (transition.IsActive == false) return;
+
+            transition.Timer -= DeltaTime;
+            
+            if (transition.Timer <= 0.0f) //컬러 전환 트랜지션이 종료가 되었다면
+            {
+                transition.IsActive = false;
+                transition.Timer = 0.0f;
+                color.Value = new float4(1,1,1,1);
+            }
+            else // Interpolation을 진행해야 할 경우
+            {
+                // Interpolation 시간은 1초로 설정하겠습니다.
+                float t = 1.0f - transition.Timer;
+                float4 startColor = new float4(0, 1, 0, 1);
+                float4 endColor = new float4(1, 1, 1, 1);
+                color.Value = math.lerp(startColor, endColor, t);
             }
         }
     }
