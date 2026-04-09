@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ECS_Preview.SpawnerAuthoring
   Prefab: {fileID: 3618141806229862362, guid: 80a10fae5f89a074fb93afbe7ed3c780, type: 3}
-  SpawnCount: 100
+  SpawnCount: 20000
 --- !u!4 &1286981146
 Transform:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1701225245982296076, guid: b210c339e01611f48a3751b504540077, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.06
+      value: 25.43
       objectReference: {fileID: 0}
     - target: {fileID: 1701225245982296076, guid: b210c339e01611f48a3751b504540077, type: 3}
       propertyPath: m_LocalPosition.y
@@ -183,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1701225245982296076, guid: b210c339e01611f48a3751b504540077, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 31.44
+      value: 15.14
       objectReference: {fileID: 0}
     - target: {fileID: 1701225245982296076, guid: b210c339e01611f48a3751b504540077, type: 3}
       propertyPath: m_LocalRotation.w

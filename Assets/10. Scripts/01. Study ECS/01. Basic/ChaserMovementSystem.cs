@@ -60,7 +60,7 @@ namespace ECS_Basic
 
                 // 내적의 결과를 이용해서 forward와 directionToTarget 방향벡터간의
                 // 차이를 구해서, 일정이상의 차이가 있다면 회전을 하도록 합니다.
-                if (dotProduct < 0.99f)
+                if (dotProduct < 0.59f)
                 {
                     quaternion rotationDelta =
                         quaternion.AxisAngle(math.up(),

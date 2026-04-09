@@ -16,13 +16,13 @@ namespace ECS_Basic
         public float RotationSpeed;
     }
 
-    // 충돌이 일어났을 때 각 Entity에 시간 경과량을 체크할 수 있는 컴포넌트 데이터입니다.
+    // 충돌이 일어났을때 각 Entity에 시간 경과량을 체크할 수있는 컴포넌트 데이터 입니다
     public struct HitColorTransition : IComponentData
     {
         public float Timer;
         public bool IsActive;
     }
-    
+
     public class ChaserAuthoring : MonoBehaviour
     {
         // 현재는 인스펙터 이지만
